@@ -1,0 +1,24 @@
+{
+  "name": "kyc",
+  "version": "0.1.0",
+  "description": "This package handles all api connections while receiving data and built DOM about your HTML code template.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bulentkyc/kyc.git"
+  },
+  "keywords": [
+    "KYC",
+    "fetch",
+    "AJAX"
+  ],
+  "author": "Bülent Kayici",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bulentkyc/kyc/issues"
+  },
+  "homepage": "https://github.com/bulentkyc/kyc#readme"
+}
