@@ -1,4 +1,4 @@
-module.exports = (url, options, timeDiff, sameDay, parser, log, target, component, key, errorHandler) => {
+export default (url, options, timeDiff, sameDay, parser, log, target, component, key, errorHandler) => {
     
     //localData = JSON.parse(localStorage.getItem());
 
