@@ -1,4 +1,4 @@
-export default (url, options, timeDiff, sameDay, parser, log, target, component, key, errorHandler) => {
+export default (url, options, timeDiff, sameDay, parser, log, target, component, key, key2, errorHandler) => {
     
     //localData = JSON.parse(localStorage.getItem());
 
@@ -58,7 +58,7 @@ export default (url, options, timeDiff, sameDay, parser, log, target, component,
         //console.log(isNotEmpty(component))
         if (isNotEmpty(component)) {
             for (let index = 0; index < result[key].length; index++) {
-                const item = result[key][index];
+                const item = result[key][key2][index];
                 //console.log(item);
                 document.querySelector(target).insertAdjacentHTML('beforeend', component(item));
             }
