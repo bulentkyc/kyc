@@ -1,4 +1,4 @@
-export default (url, options, timeDiff, sameDay, parser, log, target, component, key, key2, errorHandler) => {
+export default (url, options, timeDiff, sameDay, parser, log, target, component, key, errorHandler) => {
     
     //localData = JSON.parse(localStorage.getItem());
 
@@ -11,7 +11,7 @@ export default (url, options, timeDiff, sameDay, parser, log, target, component,
     }
 
     async function parseHandler(data, pass) {
-        let result;
+        let result, finalResult;
 
         if (pass) {
             result = data;
@@ -57,8 +57,21 @@ export default (url, options, timeDiff, sameDay, parser, log, target, component,
         
         //console.log(isNotEmpty(component))
         if (isNotEmpty(component)) {
-            for (let index = 0; index < result[key].length; index++) {
-                const item = result[key][key2][index];
+
+            if (isNotEmpty(key)) {
+                finalResult = key.split('.').map((k,i)=>{
+                    tempRes = result[k];
+                    if (i == key.length-1) {
+                        return tempRes;
+                    }
+                });
+            } else {
+                console.error('Key should be supplied to render components');
+            }
+            
+
+            for (let index = 0; index < finalResult.length; index++) {
+                const item = finalResult[index];
                 //console.log(item);
                 document.querySelector(target).insertAdjacentHTML('beforeend', component(item));
             }
