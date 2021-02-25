@@ -20,8 +20,5 @@
   "bugs": {
     "url": "https://github.com/bulentkyc/kyc/issues"
   },
-  "homepage": "https://github.com/bulentkyc/kyc",
-  "dependencies": {
-    "user": "0.0.0"
-  }
+  "homepage": "https://github.com/bulentkyc/kyc"
 }
