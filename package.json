@@ -11,9 +11,11 @@
     "url": "git+https://github.com/bulentkyc/kyc.git"
   },
   "keywords": [
-    "KYC",
+    "JS",
+    "React",
     "fetch",
-    "AJAX"
+    "AJAX",
+    "KYC"
   ],
   "author": "Bülent Kayici",
   "license": "MIT",
