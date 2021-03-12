@@ -1,18 +1,16 @@
 import localDataHandler from './localDataHandler.js';
 import parseHandler from './parseHandler.js';
+import isEmpty from './isEmpty.js';
 
-export default (url, options, parser, timeDiff, sameDay, errorHandler) => {
+export default async (url, options, parser, timeDiff, sameDay, errorHandler) => {
 
-    let finalData = [];
+    let finalData = await localDataHandler(url, timeDiff, sameDay);
 
-    if(localDataHandler(timeDiff, sameDay)) {
-        finalData = localData;
-    } else {
+    if(isEmpty(finalData)) {
         await fetch(url, options)
-        .then(res => finalData = parseHandler(res, parser))
+        .then(async res => finalData = await parseHandler(res, parser))
         .catch(errorHandler);
     }
-    
     localStorage.setItem(url, JSON.stringify({result:finalData, date: Date.now()}));
     
     return finalData;

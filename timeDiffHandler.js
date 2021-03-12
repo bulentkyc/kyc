@@ -1,7 +1,7 @@
 export default (timeDiff) => {
     
-    timeDiff = timeDiff.slice(0, -1);
-    timeDiffUnit = timeDiff.slice(-1).toLowerCase();
+    let timeDiffUnit = timeDiff.slice(-1).toLowerCase();
+    timeDiff = timeDiff.length > 1 ? timeDiff.slice(0, -1) : timeDiff;
 
     switch (timeDiffUnit) {
         case 's':
@@ -31,13 +31,17 @@ export default (timeDiff) => {
         case 'y':
             timeDiff = timeDiff*1000*60*60*24*365
             break;
-    
+
         default:
-            if (isNaN(timeDiff)) {
-                throw('value error for timeDiff.\n Value can be just a number for milliseconds, or a combination with a number and initial of a time unit from below:\n second, minute, hour, day, week, month, year.\n i.e. 123, 123s, 123m, 123h, 123d, 123w, 123y')
-            }
+            console.warn(`Current value (${timeDiff+timeDiffUnit}) for timeDiff is not proper.\nHereby timeDiff disabled.\nCurrent value can be just a number for milliseconds, or a combination with a number and initial of a time unit from below:\nsecond, minute, hour, day, week, month, year.\ni.e. 123, 123s, 123m, 123h, 123d, 123w, 123y`);
+            timeDiff = 0;
             break;
     }
+
+    if (isNaN(timeDiff)) {
+        throw('Value error for timeDiff.\nValue can be just a number for milliseconds, or a combination with a number and initial of a time unit from below:\nsecond, minute, hour, day, week, month, year.\ni.e. 123, 123s, 123m, 123h, 123d, 123w, 123y')
+    }
+    
 
     return timeDiff;
 }

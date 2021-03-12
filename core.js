@@ -1,3 +1,11 @@
+import initializeHandler from './initializeHandler.js';
+import totalLimitHandler from './totalLimitHandler.js';
+import timeDiffHandler from './timeDiffHandler.js'
+import dataHandler from './dataHandler.js';
+import processHandler from './processHandler.js';
+import logHandler from './logHandler.js';
+import errHandler from './errHandler.js';
+
 /**
  * This function handles api connections, data receiving, DOM building about your HTML code template like component.
  * 
@@ -26,17 +34,8 @@
  * @param {boolean} [settings.sameDay] - Same day control to expire data on local storage.
  * @param {number} [settings.totalLimit] - Limit total request limit count by kyc from now on. Don't set it to remove the limit.
  * @param {function} [settings.errorHandler] - Error handler function.
+ * @returns {Array} Returns array of components or success.
  */
-
- //{method, headers, options, timeDiff, sameDay, parser, log, target, component, key, errorHandler}
-import initializeHandler from './initializeHandler.js';
-import totalLimitHandler from './totalLimitHandler.js';
-import timeDiffHandler from './timeDiffHandler.js'
-import dataHandler from './dataHandler.js';
-import processHandler from './processHandler.js';
-import logHandler from './logHandler.js';
-import errHandler from './errHandler.js';
-
 
 export default async (url, settings) => {
 
@@ -50,7 +49,7 @@ export default async (url, settings) => {
         log: false,
         key: null,
         component: null,
-        target: 'body',
+        target: 'return',
         timeDiff:'24h',
         sameDay: false,
         totalLimit: null,
@@ -72,13 +71,12 @@ export default async (url, settings) => {
         errorHandler
     } = initializeHandler(defaultSettings, settings);
 
-
     totalLimitHandler(totalLimit);
 
-    finalData = dataHandler(url, {method, headers, ...options}, parser, timeDiffHandler(timeDiff), sameDay, errorHandler);
+    finalData = await dataHandler(url, {method, headers, ...options}, parser, timeDiffHandler(timeDiff), sameDay, errorHandler);
     
-    logHandler(log);
+    logHandler(log, finalData);
 
-    processHandler(finalData, key, target, component);
+    return await processHandler(finalData, key, target, component);
 
 }

@@ -1,8 +1,10 @@
+import isEmpty from './isEmpty.js';
+
 export default (totalLimit) => {
 
     let counter = 0;
 
-    if (!isNaN(totalLimit)) {
+    if (!isEmpty(totalLimit)) {
         if (localStorage.getItem(counter)) {
             counter += 1;
             localStorage.setItem('counter', counter);

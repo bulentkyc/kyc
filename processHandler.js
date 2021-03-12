@@ -1,24 +1,26 @@
-export default (data, key, target, component) => {
+export default async (data, key, target, component) => {
     
     let finalResult;
+    let componentSet = [];
 
     if (component) {
         if (key) {
             let tempRes = data;
             let keys = key.split('.');
-            console.log(keys)
             keys.forEach(k=>{
                 tempRes = tempRes[k];
-                console.log(tempRes)
                 finalResult = tempRes;
             });
-
-            finalResult.forEach( item => {
-                document.querySelector(target).insertAdjacentHTML('beforeend', component(item));
-            });
-
-            if (target == 'body') {
-                console.warn('component rendered into <body> since target has not been set.');
+            if (target == 'return') {
+                await finalResult.forEach( item => {
+                    componentSet.push(component(item));
+                });
+                return componentSet;
+            } else {
+                finalResult.forEach( item => {
+                    document.querySelector(target).insertAdjacentHTML('beforeend', component(item));
+                });
+                return ['Success'];
             }
         } else {
             throw ('"key" should be supplied to render components automatically by kyc.');
