@@ -1,6 +1,6 @@
 {
   "name": "kyc",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "This package handles all api connections while receiving data and built DOM about your HTML code template.",
   "main": "core.js",
   "scripts": {
