@@ -43,7 +43,7 @@ export default async (url, settings) => {
 
     let defaultSettings = {
         method: 'GET',
-        headers: null,
+        headers: {},
         options: null,
         parser: 'json',
         log: false,

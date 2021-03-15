@@ -11,19 +11,21 @@ export default async (data, key, target, component) => {
                 tempRes = tempRes[k];
                 finalResult = tempRes;
             });
-            if (target == 'return') {
-                await finalResult.forEach( item => {
-                    componentSet.push(component(item));
-                });
-                return componentSet;
-            } else {
-                finalResult.forEach( item => {
-                    document.querySelector(target).insertAdjacentHTML('beforeend', component(item));
-                });
-                return ['Success'];
-            }
         } else {
-            throw ('"key" should be supplied to render components automatically by kyc.');
+            finalResult = data;
+            //throw ('"key" should be supplied to render components automatically by kyc.');
+        }
+
+        if (target == 'return') {
+            await finalResult.forEach( item => {
+                componentSet.push(component(item));
+            });
+            return componentSet;
+        } else {
+            finalResult.forEach( item => {
+                document.querySelector(target).insertAdjacentHTML('beforeend', component(item));
+            });
+            return ['Success'];
         }
     }
 }
