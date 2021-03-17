@@ -25,7 +25,9 @@ export default async (data, key, target, component) => {
             finalResult.forEach( item => {
                 document.querySelector(target).insertAdjacentHTML('beforeend', component(item));
             });
-            return ['Success'];
+            return data;
         }
+    }else {
+        return data;
     }
 }
