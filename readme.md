@@ -1,12 +1,12 @@
 # ![KYC Logo](http://bulentkyc.github.io/kyc-react-sample/kyc.png)
-# KYC 
+# KYC
 
 >🥁 Fetch’ ing data from web services is an important and essential part of the web development. Also there’re some routines after then fetching the data!
 >- looping data
 >- caching
 >- creating content
-
- KYC manages this routine in a smart way for you. Just customise KYC and enjoy the convenience.
+>
+> KYC manages this routine in a smart way for you. Just customise KYC and enjoy the convenience.
 
 KYC serves you:
 
