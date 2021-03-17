@@ -1,4 +1,4 @@
-# KYC ![KYC Logo](/kyc-react-sample/kyc.png)
+# KYC ![KYC Logo](http://bulentkyc.github.io/kyc-react-sample/kyc.png)
 
 🥁 Fetch’ ing data from web services is an important and essential part of the web development. Also there’re some routines after then fetching the data!
 - looping data
