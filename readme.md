@@ -138,9 +138,9 @@ kyc(url,{ headers, key, component, timeDiff}).then(output => {
 >```
 >
 
-> ## [GitHub Repo](https://github.com/bulentkyc/kyc-react-sample/tree/function-base)
+> [GitHub Repo](https://github.com/bulentkyc/kyc-react-sample/tree/function-base)
 
-> ## [GitHub Pages](https://bulentkyc.github.io/kyc-react-sample/)
+> [GitHub Pages](https://bulentkyc.github.io/kyc-react-sample/)
 
 ### React sample with classes
 
