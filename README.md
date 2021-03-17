@@ -94,13 +94,11 @@ kyc(url,{ headers, key, component, timeDiff}).then(output => {
 >
 >  useEffect(() => {
 >    let url = 'https://restcountries.eu/rest/v2/all';
->    let headers = {};
->    let key = '';
 >    let timeDiff = '1d';
 >    let log = 'true';
 >    let component = (item) => {
 >      return (
->        <CustomComponent 
+>        <Card 
 >          imgSrc = {item.flag} 
 >          title = {item.name}
 >        />
