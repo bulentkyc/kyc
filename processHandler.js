@@ -6,7 +6,7 @@ export default async (data, key, target, component) => {
     if (key) {
         let tempRes = data;
         let keys = key.split('.');
-        keys.forEach(k=>{
+        await keys.forEach(k=>{
             tempRes = tempRes[k];
             finalResult = tempRes;
         });
@@ -27,9 +27,9 @@ export default async (data, key, target, component) => {
             finalResult.forEach( item => {
                 document.querySelector(target).insertAdjacentHTML('beforeend', component(item));
             });
-            return data;
+            return finalResult;
         }
     }else {
-        return data;
+        return finalResult;
     }
 }
