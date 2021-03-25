@@ -1,33 +1,18 @@
-export default async (data, key, target, component) => {
-    
-    let finalResult;
-    let componentSet = [];
+import localDataHandler from './localDataHandler.js';
+import parseHandler from './parseHandler.js';
+import isEmpty from './isEmpty.js';
 
-    if (component) {
-        if (key) {
-            let tempRes = data;
-            let keys = key.split('.');
-            keys.forEach(k=>{
-                tempRes = tempRes[k];
-                finalResult = tempRes;
-            });
-        } else {
-            finalResult = data;
-            //throw ('"key" should be supplied to render components automatically by kyc.');
-        }
+export default async (url, options, parser, timeDiff, sameDay, errorHandler) => {
 
-        if (target == 'return') {
-            await finalResult.forEach( item => {
-                componentSet.push(component(item));
-            });
-            return componentSet;
-        } else {
-            finalResult.forEach( item => {
-                document.querySelector(target).insertAdjacentHTML('beforeend', component(item));
-            });
-            return data;
-        }
-    }else {
-        return data;
+    let finalData = await localDataHandler(url, timeDiff, sameDay);
+
+    if(isEmpty(finalData)) {
+        await fetch(url, options)
+        .then(async res => finalData = await parseHandler(res, parser))
+        .catch(errorHandler);
     }
+    localStorage.setItem(url, JSON.stringify({result:finalData, date: Date.now()}));
+    
+    return finalData;
+
 }
