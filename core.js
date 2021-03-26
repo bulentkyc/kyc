@@ -45,7 +45,7 @@ export default async (url, settings) => {
     let defaultSettings = {
         method: 'GET',
         headers: {},
-        body: {},
+        body: null,
         options: null,
         parser: 'json',
         log: false,
@@ -76,7 +76,13 @@ export default async (url, settings) => {
 
     totalLimitHandler(totalLimit);
 
-    finalData = await dataHandler(url, {method, headers, body:JSON.stringify(body), ...options}, parser, timeDiffHandler(timeDiff), sameDay, errorHandler);
+    let finalOpt = {method, headers, ...options}
+
+    if (body != null) {
+        finalOpt.body = JSON.stringify(body);
+    }
+
+    finalData = await dataHandler(url, finalOpt, parser, timeDiffHandler(timeDiff), sameDay, errorHandler);
     
     logHandler(log, finalData);
 
