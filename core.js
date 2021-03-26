@@ -24,6 +24,7 @@ import errHandler from './errHandler.js';
  * @param {Object} [settings] - Any settings from the list.
  * @param {string} [settings.method] - HTTP request method type (i.e. GET, POST, ...).
  * @param {Object} [settings.headers] - HTTP request headers.
+ * @param {Object} [settings.body] - HTTP request body.
  * @param {Object} [settings.options] - HTTP request options.
  * @param {string} [settings.parser] - Promise-based methods to access the body in various formats(json, text, formData, blob or arrayBuffer ).
  * @param {boolean} [settings.log] - Log parsed response on console.
@@ -44,13 +45,14 @@ export default async (url, settings) => {
     let defaultSettings = {
         method: 'GET',
         headers: {},
+        body: {},
         options: null,
         parser: 'json',
         log: false,
         key: null,
         component: null,
         target: 'return',
-        timeDiff:'24h',
+        timeDiff:0,
         sameDay: false,
         totalLimit: null,
         errorHandler: errHandler,
@@ -59,6 +61,7 @@ export default async (url, settings) => {
     let {
         method,
         headers,
+        body,
         options,
         parser,
         log,
@@ -73,7 +76,7 @@ export default async (url, settings) => {
 
     totalLimitHandler(totalLimit);
 
-    finalData = await dataHandler(url, {method, headers, ...options}, parser, timeDiffHandler(timeDiff), sameDay, errorHandler);
+    finalData = await dataHandler(url, {method, headers, body:JSON.stringify(body), ...options}, parser, timeDiffHandler(timeDiff), sameDay, errorHandler);
     
     logHandler(log, finalData);
 
