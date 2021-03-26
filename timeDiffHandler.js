@@ -5,6 +5,8 @@ export default (timeDiff) => {
     if (isNaN(timeDiff)) {
         timeDiffUnit = timeDiff.slice(-1).toLowerCase();
         timeDiff = timeDiff.length > 1 ? timeDiff.slice(0, -1) : timeDiff;
+    } else {
+        return timeDiff;
     }    
 
     switch (timeDiffUnit) {
