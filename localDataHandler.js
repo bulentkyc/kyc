@@ -6,7 +6,7 @@ export default (url, timeDiff, sameDay) => {
 
     if(!isEmpty(localStorage.getItem(url))) {
         localData = JSON.parse(localStorage.getItem(url));
-        if ((timeDiff > (Date.now() - localData.date)) && (sameDay == false) || isEmpty(timeDiff)) {
+        if ((timeDiff > (Date.now() - localData.date)) && (sameDay == false) || !isEmpty(timeDiff)) {
             return localData.result;
         } 
     }
